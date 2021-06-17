@@ -1,7 +1,7 @@
 package de.ur.mi.android.demos.todo;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import de.ur.mi.android.demos.todo.fragments.CreateTaskDialogFragment;
 import de.ur.mi.android.demos.todo.fragments.DetailFragment;
 import de.ur.mi.android.demos.todo.fragments.TaskListFragment;
@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements
         TaskManager.TaskManagerListener,
         CreateTaskDialogFragment.OnTaskCreationListener {
 
-    public static final String TASK_KEY = "TASK";
     public TaskManager taskManager;
     private DetailFragment detailFragment;
     private TaskListFragment taskListFragment;
@@ -36,10 +35,6 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.container_detail);
         taskListFragment = (TaskListFragment) getSupportFragmentManager().findFragmentById(R.id.container_task_list);
-        System.out.println("a: " + detailFragment);
-        System.out.println("b: " + taskListFragment);
-
-
     }
 
     @Override
@@ -63,13 +58,15 @@ public class MainActivity extends AppCompatActivity implements
             detailFragment.displayTask(task);
         }
         else{
-            startDetailActivity(task);
+            showDetailFragment(task);
         }
     }
 
-    private void startDetailActivity(Task task){
-        Intent i = new Intent(this, DetailActivity.class);
-        i.putExtra(TASK_KEY, task);
-        startActivity(i);
+    private void showDetailFragment(Task task){
+        DetailFragment newFragment = new DetailFragment(task);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container_task_list, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

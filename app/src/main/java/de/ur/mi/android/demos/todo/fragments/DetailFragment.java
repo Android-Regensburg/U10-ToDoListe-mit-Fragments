@@ -16,6 +16,11 @@ import de.ur.mi.android.demos.todo.tasks.Task;
 public class DetailFragment extends Fragment {
 
     private TextView titleText, descriptionText;
+    private Task task;
+
+    public DetailFragment(Task task){
+        this.task = task;
+    }
 
     @Nullable
     @Override
@@ -28,6 +33,9 @@ public class DetailFragment extends Fragment {
     private void initUI(View view){
         titleText = view.findViewById(R.id.detail_title);
         descriptionText = view.findViewById(R.id.detail_description);
+        if(task != null){
+            displayTask(task);
+        }
     }
 
     public void displayTask(Task task){

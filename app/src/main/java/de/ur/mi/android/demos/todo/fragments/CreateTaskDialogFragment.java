@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,18 +56,25 @@ public class CreateTaskDialogFragment extends DialogFragment {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createTask();
-                dismiss();
+                if(createTask()){
+                    dismiss();
+                }
             }
         });
     }
 
-    private void createTask(){
+    // returns true if creation successfull
+    private boolean createTask(){
         String description = inputDescription.getText().toString().trim();
         String title = inputTitle.getText().toString().trim();
         if(!description.isEmpty() && !title.isEmpty()){
             Task task = new Task(title, description);
             listener.onTaskCreated(task);
+            return true;
+        }
+        else{
+            Toast.makeText(getContext(), "Du hast nicht alles ausgefüllt!", Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
