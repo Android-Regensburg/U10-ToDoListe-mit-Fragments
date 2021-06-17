@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void initUI() {
         setContentView(R.layout.activity_main);
+        // detailFragment ist null, falls container_detail nicht im XML Layout gefunden wird
         detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.container_detail);
         taskListFragment = (TaskListFragment) getSupportFragmentManager().findFragmentById(R.id.container_task_list);
     }
@@ -63,14 +64,18 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    // Lädt das DetailFragment in den Fragment-Container
     private void showDetailFragment(Task task){
         Bundle data = new Bundle();
+        // Die Task Klasse implementiert das Serializable Interface und kann daher dem Bundle übergeben werden
         data.putSerializable(TASK_KEY, task);
-        DetailFragment newFragment = new DetailFragment();
-        newFragment.setArguments(data);
+        DetailFragment detailFragment = new DetailFragment();
+        // ausgewählten Task an das Fragment übergeben, sodass das UI diesen Task anzeigen kann
+        detailFragment.setArguments(data);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_task_list, newFragment);
+        // ersetzen des aktuellen Fragments im Container durch das DetailFragment
+        transaction.replace(R.id.container_task_list, detailFragment);
         transaction.addToBackStack(null);
-        transaction.commit();
+        transaction.commit(); // Führt die Transaktion durch
     }
 }

@@ -14,6 +14,7 @@ import de.ur.mi.android.demos.todo.R;
 import de.ur.mi.android.demos.todo.tasks.Task;
 import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapterLongClick;
 
+/**Fragment mit RecyclerView zur Darstellung aller erzeugten Tasks*/
 public class TaskListFragment extends Fragment {
 
     private RecyclerView tasksRecyclerView;
@@ -26,7 +27,7 @@ public class TaskListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
         System.out.println("oncreate View");
         initUI(view);
-        ((MainActivity)getActivity()).onTaskListUpdated(); // initial update for adapter task list
+        ((MainActivity)getActivity()).onTaskListUpdated(); // initiales Update für den Adapter
         return view;
     }
 
@@ -38,6 +39,7 @@ public class TaskListFragment extends Fragment {
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Erstellen des DialogFragments zur Erstellung eines neuen Tasks
                 new CreateTaskDialogFragment().show(getChildFragmentManager(), null);
             }
         });

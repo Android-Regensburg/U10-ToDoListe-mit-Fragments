@@ -1,19 +1,15 @@
 package de.ur.mi.android.demos.todo.ui;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-
 import de.ur.mi.android.demos.todo.R;
 import de.ur.mi.android.demos.todo.tasks.Task;
 import de.ur.mi.android.demos.todo.ui.viewholder.TaskListViewHolder;
@@ -190,6 +186,13 @@ public class TaskListRecyclerAdapterLongClick
         }
     }
 
+    /**
+     * Fängt normale Klicks auf einzelne ViewHolder ab. Der Adapter implementiert das TaskListViewHolderListener-Interface
+     * und registriert sich selbst als Listener auf allen neuen ViewHolder. Diese informieren den Adapter über den Aufruf
+     * dieser Methode, wenn sie von den Nutzer*innen angeklickt wurden.
+     *
+     * @param position Position dieses ViewHolders innerhalb des angeschlossenen RecyclerView
+     */
     @Override
     public void onViewHolderClicked(int position) {
         Task task = tasks.get(position);
@@ -199,19 +202,17 @@ public class TaskListRecyclerAdapterLongClick
     }
 
     /**
-     * Interface für Observer, die über die Interaktion der Nutzer*innen mit diesem Adapter bzw. dem
-     * angeschlossenen RecyclerView informiert werden wollen - wird von der MainActiviy implementiert,
-     * die sich selbst als Listener beim Erstellen dieses Adapters übergibt.
+     * Interface für Observer, die über einen langen Klick auf ein Element der RecyclerView informiert werden sollen.
+     * Wird von der MainActiviy implementiert, die sich selbst als Listener beim Erstellen dieses Adapters übergibt.
      */
     public interface TaskLongClickedListener {
-        /**
-         * Wird aufgerufen, wenn ein Eintrag des Views per LongClick ausgewählt wurde
-         *
-         * @param task Task, dessen UI-Repräsentation ausgewählt wurde
-         */
         void onTaskLongClicked(Task task);
     }
 
+    /***
+     * Interface für Observer, die über einen einfachen Klick auf ein Element der RecyclerView informiert werden sollen.
+     * Wir von der MainActivity implementiert, die sich selbst als Listener beim Erstellen dieses Adapters übergibt.
+     */
     public interface TaskSelectedListener{
         void onTaskSelected(Task task);
     }

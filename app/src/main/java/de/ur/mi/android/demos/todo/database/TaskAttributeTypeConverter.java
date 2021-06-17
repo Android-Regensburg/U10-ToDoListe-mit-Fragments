@@ -5,6 +5,7 @@ import java.util.UUID;
 import de.ur.mi.android.demos.todo.tasks.Task;
 
 public class TaskAttributeTypeConverter {
+
     // TypeConverter for Date <-> Long
     @TypeConverter
     public static Date millisecondsToDate(Long milliseconds) {
@@ -15,6 +16,7 @@ public class TaskAttributeTypeConverter {
     public static Long dateToMilliseconds(Date date) {
         return date == null ? null : date.getTime();
     }
+
 
     // TypeConverter for UUID <-> String
     @TypeConverter
@@ -27,6 +29,8 @@ public class TaskAttributeTypeConverter {
         return taskID == null ? null : taskID.toString();
     }
 
+
+    // TypeConverter für TaskState Enum <-> Integer
     @TypeConverter
     public static Task.TaskState intToTaskState(Integer taskStateInt) {
         return Task.TaskState.values()[taskStateInt];

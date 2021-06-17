@@ -1,7 +1,5 @@
 package de.ur.mi.android.demos.todo.ui.viewholder;
-
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,25 +19,26 @@ public class TaskListViewHolder extends RecyclerView.ViewHolder {
      * Wird im TaskListRecyclerAdapter aufgerufen, wenn ein neuer View für die Darstellung eines Eintrags
      * benötigt wird.
      *
-     * @param itemView View für eigentlichen Eintrag innerhalb des RecyclerViews
-     * @param longClickListener Eigene Ergänzung: Listener, der über Interaktion der Nutzer*innen mit diesem ViewHolder informiert werden soll
      */
     public TaskListViewHolder(@NonNull View itemView, TaskListViewHolderLongClickListener longClickListener, TaskListViewHolderClickListener clickListener) {
         super(itemView);
         this.viewHolderLongClickListener = longClickListener;
         this.viewHolderClickListener = clickListener;
         taskView = itemView;
-        // Beim Erstellen des neuen ViewHolders registrieren wird zusätzlich einen LongClick-Listener. Die Interaktion
-        // fangen wir im Holder ab und geben die Information, dass dieser View angeklickt wurde an den an diesen Konstruktor
-        // übergebenen Listener (TaskListViewHolderListener) weiter
         taskView.setOnClickListener(new View.OnClickListener() {
+            /*
+            Bei normalen Klick auf ein Element soll des darunterliegende Task-Objekt im DetailFragment geladen werden
+            */
             @Override
             public void onClick(View v) {
                 viewHolderClickListener.onViewHolderClicked(getAdapterPosition());
             }
         });
         taskView.setOnLongClickListener(new View.OnLongClickListener() {
-            // markieren als geschlossen
+            /*
+            Bei langem Klick auf ein Element soll der Zustand des darunterliegenden Task-Objektes
+            getoggelt werden.
+            */
             @Override
             public boolean onLongClick(View v) {
                 viewHolderLongClickListener.onViewHolderLongClicked(getAdapterPosition());
@@ -49,18 +48,17 @@ public class TaskListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * Interface für die Komponenten, die sich für die Interaktion der Nutzer*innen mit diesem ViewHolder bzw. dem
+     * Interface für die Komponenten, die sich für lange Klicks der Nutzer*innen auf diesem ViewHolder bzw. dem
      * umschlossenen View interessieren
      */
     public interface TaskListViewHolderLongClickListener {
-        /**
-         * Wird aufgerufen, wenn das View, das über diesen ViewHolder verwaltet wird, angeklickt wurde
-         *
-         * @param position Position dieses ViewHolders innerhalb des angeschlossenen RecyclerView
-         */
         void onViewHolderLongClicked(int position);
     }
 
+    /**
+     * Interface für die Komponenten, die sich für normale Klicks der Nutzer*innen auf diesem ViewHolder bzw. dem
+     * umschlossenen View interessieren
+     */
     public interface TaskListViewHolderClickListener{
         void onViewHolderClicked(int position);
     }

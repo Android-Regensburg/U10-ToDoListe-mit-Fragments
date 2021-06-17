@@ -1,11 +1,9 @@
 package de.ur.mi.android.demos.todo.tasks;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -48,7 +46,6 @@ public class Task implements Comparable<Task>, Serializable {
         this.title = title;
     }
 
-
     public Task(String title, String description, UUID id, Date createdAt, TaskState currentState) {
         this.id = id;
         this.createdAt = createdAt;
@@ -85,12 +82,13 @@ public class Task implements Comparable<Task>, Serializable {
         return currentState == TaskState.CLOSED;
     }
 
-    public void markAsOpen() {
-        currentState = TaskState.OPEN;
-    }
-
-    public void markAsClosed() {
-        currentState = TaskState.CLOSED;
+    public void toggleState(){
+        if(currentState == TaskState.CLOSED){
+            currentState = TaskState.OPEN;
+        }
+        else{
+            currentState = TaskState.CLOSED;
+        }
     }
 
     public Task copy() {

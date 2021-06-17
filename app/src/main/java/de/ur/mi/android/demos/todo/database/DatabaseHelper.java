@@ -1,15 +1,11 @@
 package de.ur.mi.android.demos.todo.database;
-
 import android.app.Activity;
-
 import androidx.room.Room;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
-
 import de.ur.mi.android.demos.todo.tasks.Task;
 
+/**Datenbank-Helferklasse, die den Zugriff auf die Datenbank abstrahiert*/
 public class DatabaseHelper {
 
     private static final String DATABASE_NAME = "tasks-db";
@@ -38,6 +34,7 @@ public class DatabaseHelper {
     }
 
 
+    /*Datenbankoperationen laufen jeweils in separaten Thread*/
     private static abstract class DBOperationThread implements Runnable{
 
         void start() {
@@ -45,6 +42,7 @@ public class DatabaseHelper {
         }
     }
 
+    /*Runnable für das Einfügen eines einzelnen Tasks in die Datenbank*/
     private class AddTaskTask extends DBOperationThread {
 
         private Task task;
@@ -59,6 +57,7 @@ public class DatabaseHelper {
         }
     }
 
+    /*Runnable für das Updaten eines einzelnen Tasks*/
     private class UpdateTaskTask extends DBOperationThread {
 
         private Task task;
@@ -73,6 +72,7 @@ public class DatabaseHelper {
         }
     }
 
+    /*Runnable für das Laden aller Tasks aus der Datenbank*/
     private class RetrieveAllTasksTask extends DBOperationThread {
 
         private TaskQueryResultListener listener;

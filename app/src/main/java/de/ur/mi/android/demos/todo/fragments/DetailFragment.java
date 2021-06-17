@@ -1,19 +1,17 @@
 package de.ur.mi.android.demos.todo.fragments;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import de.ur.mi.android.demos.todo.MainActivity;
 import de.ur.mi.android.demos.todo.R;
 import de.ur.mi.android.demos.todo.tasks.Task;
 
+/**Fragment für die Detailansicht eines einzelnen Tasks*/
 public class DetailFragment extends Fragment {
 
     private TextView titleText, descriptionText;
@@ -27,6 +25,7 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
+    // die ggf. übergebenen Daten aus der MainActivity empfangen
     private void receiveExtras(){
         Bundle extras = getArguments();
         if(extras != null){
@@ -42,6 +41,7 @@ public class DetailFragment extends Fragment {
         descriptionText = view.findViewById(R.id.detail_description);
     }
 
+    // Updatet das UI für einen ausgewählten Task
     public void displayTask(Task task){
         titleText.setText(task.getTitle());
         descriptionText.setText(task.getDescription());

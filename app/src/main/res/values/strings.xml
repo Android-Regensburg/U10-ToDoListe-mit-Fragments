@@ -6,4 +6,6 @@
     <string name="task_id_tag_for_views">TASK_UUID</string>
     <string name="title_taskdescription">Aufgabenbeschreibung</string>
     <string name="title_tasklist">Meine Aufgaben</string>
+    <string name="hint_task_title">Neue Aufgabe</string>
+
 </resources>
