@@ -10,27 +10,14 @@ Das Ziel dieser Aufgabe ist die Erweiterung der ToDo App aus dem 5. Übungsblatt
 
 * Um die App sowohl auf dem Smartphone, als auch auf einem Tablet testen zu können, müssen Sie sich über den AVD-Manager ein passendes Tablet (z.B. Pixel C) einrichten. 
 
-## Ausgangslage
+## Vorgaben
 
 
 ## Vorgehen
-### Wechsel zwischen Activites
+
+### Schritt 1
+
+### Schritt 2
 
 
-### Fragments und Acivities verbinden
-
-### ContentFragment
-
-### Notiz verarbeiten
-
-### Notiz aus der Liste auswählen
-
-
-### Zusammensetzen des MainActivity Layouts
-
-
-
-
-
-## Anhang
-### Screenshots
+## Screenshots der Anwendung auf unterschiedlichen Gerättypen
