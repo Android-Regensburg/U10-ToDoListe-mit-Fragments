@@ -26,7 +26,9 @@ import de.ur.mi.android.demos.todo.ui.viewholder.TaskListViewHolder;
  * User Interface auf unterschiedliche Art und Weise dargestellt.
  */
 
-public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHolder> implements TaskListViewHolder.TaskListViewHolderListener {
+public class TaskListRecyclerAdapterLongClick
+        extends RecyclerView.Adapter<TaskListViewHolder>
+        implements TaskListViewHolder.TaskListViewHolderLongClickListener, TaskListViewHolder.TaskListViewHolderClickListener   {
 
     /* Konstanten, die unterschiedliche Typen von Einträgen des angeschlossenen RecyclerViews identifizieren.
      * Das ist dann notwendig, wenn nicht alle Einträge einer Liste auf die gleiche Art und Weise dargestellt werden sollen,
@@ -38,7 +40,8 @@ public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHo
     private static final int VIEW_TYPE_FOR_CLOSED_ITEMS = 2; // Repräsentiert eine bereits geschlossene Aufgabe
 
     // Listener, der über Klicks auf einzelne Einträge im RecyclerView informiert werden soll
-    private final TaskListAdapterListener listener;
+    private final TaskLongClickedListener longClickedListener;
+    private final TaskSelectedListener selectedListener;
 
     /**
      * Achtung: Dieser Adapter nutzt eine Kopie der Aufgabenliste, die vom TaskManager verwaltet wird. Ändern sich
@@ -52,10 +55,11 @@ public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHo
     /**
      * Erzeugt einen neuen Adapter
      *
-     * @param listener Listener, der über die Interaktionen der Nutzer*innen mit den Listeneinträgen informiert werden soll
+     * @param longClickedListener Listener, der über die Interaktionen der Nutzer*innen mit den Listeneinträgen informiert werden soll
      */
-    public TaskListRecyclerAdapter(TaskListAdapterListener listener) {
-        this.listener = listener;
+    public TaskListRecyclerAdapterLongClick(TaskLongClickedListener longClickedListener, TaskSelectedListener selectedListener) {
+        this.longClickedListener = longClickedListener;
+        this.selectedListener = selectedListener;
         this.tasks = new ArrayList<>();
     }
 
@@ -148,7 +152,7 @@ public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHo
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_item_done, parent, false);
         }
         // Erstellen des ViewHolders auf Basis der oben ausgewählten View
-        TaskListViewHolder vh = new TaskListViewHolder(v, this);
+        TaskListViewHolder vh = new TaskListViewHolder(v, this, this);
         return vh;
     }
 
@@ -182,7 +186,15 @@ public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHo
     public void onViewHolderLongClicked(int position) {
         Task task = tasks.get(position);
         if (task != null) {
-            listener.onItemSelected(task);
+            longClickedListener.onTaskLongClicked(task);
+        }
+    }
+
+    @Override
+    public void onViewHolderClicked(int position) {
+        Task task = tasks.get(position);
+        if (task != null) {
+            selectedListener.onTaskSelected(task);
         }
     }
 
@@ -191,13 +203,17 @@ public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHo
      * angeschlossenen RecyclerView informiert werden wollen - wird von der MainActiviy implementiert,
      * die sich selbst als Listener beim Erstellen dieses Adapters übergibt.
      */
-    public interface TaskListAdapterListener {
+    public interface TaskLongClickedListener {
         /**
          * Wird aufgerufen, wenn ein Eintrag des Views per LongClick ausgewählt wurde
          *
          * @param task Task, dessen UI-Repräsentation ausgewählt wurde
          */
-        void onItemSelected(Task task);
+        void onTaskLongClicked(Task task);
+    }
+
+    public interface TaskSelectedListener{
+        void onTaskSelected(Task task);
     }
 
 }
