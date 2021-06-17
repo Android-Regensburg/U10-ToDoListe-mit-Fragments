@@ -22,7 +22,7 @@ public class TaskListViewHolder extends RecyclerView.ViewHolder {
      * benötigt wird.
      *
      * @param itemView View für eigentlichen Eintrag innerhalb des RecyclerViews
-     * @param listener Eigene Ergänzung: Listener, der über Interaktion der Nutzer*innen mit diesem ViewHolder informiert werden soll
+     * @param longClickListener Eigene Ergänzung: Listener, der über Interaktion der Nutzer*innen mit diesem ViewHolder informiert werden soll
      */
     public TaskListViewHolder(@NonNull View itemView, TaskListViewHolderLongClickListener longClickListener, TaskListViewHolderClickListener clickListener) {
         super(itemView);

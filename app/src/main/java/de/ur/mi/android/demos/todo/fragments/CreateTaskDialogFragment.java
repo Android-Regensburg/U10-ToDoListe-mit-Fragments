@@ -63,8 +63,9 @@ public class CreateTaskDialogFragment extends DialogFragment {
 
     private void createTask(){
         String description = inputDescription.getText().toString().trim();
-        if(!description.isEmpty()){
-            Task task = new Task(description);
+        String title = inputTitle.getText().toString().trim();
+        if(!description.isEmpty() && !title.isEmpty()){
+            Task task = new Task(title, description);
             listener.onTaskCreated(task);
         }
     }

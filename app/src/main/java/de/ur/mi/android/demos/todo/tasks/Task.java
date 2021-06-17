@@ -1,5 +1,6 @@
 package de.ur.mi.android.demos.todo.tasks;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,29 +20,36 @@ import java.util.UUID;
  * ermöglicht. Offene Aufgaben werden vor geschlossenen Aufgaben einsportiert. Aufgaben mit
  * gleichem Status werden nach dem Erstellungsdatum sortiert.
  */
-public class Task implements Comparable<Task> {
+public class Task implements Comparable<Task>, Serializable {
 
     private final UUID id;
     private final String description;
+    private final String title;
     private final Date createdAt;
     private TaskState currentState;
 
-    public Task(String description) {
+    public Task(String title, String description) {
         this.id = UUID.randomUUID();
         this.createdAt = new Date();
         this.currentState = TaskState.OPEN;
         this.description = description;
+        this.title = title;
     }
 
-    private Task(String description, UUID id, Date createdAt, TaskState currentState) {
+    private Task(String title, String description, UUID id, Date createdAt, TaskState currentState) {
         this.id = id;
         this.createdAt = createdAt;
         this.currentState = currentState;
+        this.title = title;
         this.description = description;
     }
 
     public String getID() {
         return id.toString();
+    }
+
+    public String getTitle(){
+        return this.title;
     }
 
     public String getDescription() {
@@ -66,7 +74,7 @@ public class Task implements Comparable<Task> {
 
     public Task copy() {
         Date creationDateFromOriginal = getCreationDateCopy();
-        return new Task(description, id, creationDateFromOriginal, currentState);
+        return new Task(title, description, id, creationDateFromOriginal, currentState);
     }
 
     private Date getCreationDateCopy() {

@@ -1,5 +1,4 @@
 package de.ur.mi.android.demos.todo.tasks;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -47,7 +46,7 @@ public class TaskManager {
         for (Task task : tasks) {
             currentTasks.add(task.copy());
         }
-        /**Collections.sort(currentTasks);*/
+        Collections.sort(currentTasks);
         return currentTasks;
     }
 

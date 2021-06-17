@@ -117,10 +117,10 @@ public class TaskListRecyclerAdapterLongClick
         // Wir identifzieren über den Positionsparameter, für welchen Datensatz der ViewHolder aktualisiert werden soll
         Task task = tasks.get(position);
         // Referenzieren der einzelnen TextViews im übergebenen View
-        TextView description = holder.taskView.findViewById(R.id.list_item_description);
+        TextView title = holder.taskView.findViewById(R.id.list_item_title);
         TextView createdAt = holder.taskView.findViewById(R.id.list_item_creationDate);
         // Auslesen der Task-Eigenschaften und übertragen in die jeweiligen TextViews
-        description.setText(task.getDescription());
+        title.setText(task.getTitle());
         createdAt.setText(getFormattedDateForUI(task.getCreationDate()));
     }
 
