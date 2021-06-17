@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements
         TaskManager.TaskManagerListener,
         CreateTaskDialogFragment.OnTaskCreationListener {
 
+    public static final String TASK_KEY = "task";
     public TaskManager taskManager;
     private DetailFragment detailFragment;
     private TaskListFragment taskListFragment;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initTaskManager() {
-        taskManager = new TaskManager(this);
+        taskManager = new TaskManager(this, this);
     }
 
     private void initUI() {
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void showDetailFragment(Task task){
-        DetailFragment newFragment = new DetailFragment(task);
+        Bundle data = new Bundle();
+        data.putSerializable(TASK_KEY, task);
+        DetailFragment newFragment = new DetailFragment();
+        newFragment.setArguments(data);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container_task_list, newFragment);
         transaction.addToBackStack(null);

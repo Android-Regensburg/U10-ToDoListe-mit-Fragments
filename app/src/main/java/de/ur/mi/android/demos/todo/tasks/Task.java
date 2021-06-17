@@ -1,5 +1,11 @@
 package de.ur.mi.android.demos.todo.tasks;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -20,14 +26,20 @@ import java.util.UUID;
  * ermöglicht. Offene Aufgaben werden vor geschlossenen Aufgaben einsportiert. Aufgaben mit
  * gleichem Status werden nach dem Erstellungsdatum sortiert.
  */
+@Entity(tableName = "task_table")
 public class Task implements Comparable<Task>, Serializable {
 
-    private final UUID id;
-    private final String description;
-    private final String title;
-    private final Date createdAt;
+    @PrimaryKey
+    @NonNull
+    public final UUID id;
+    public final String description;
+    public final String title;
+    @ColumnInfo(name = "created_at")
+    public final Date createdAt;
+    @ColumnInfo(name = "current_state")
     private TaskState currentState;
 
+    @Ignore
     public Task(String title, String description) {
         this.id = UUID.randomUUID();
         this.createdAt = new Date();
@@ -36,12 +48,21 @@ public class Task implements Comparable<Task>, Serializable {
         this.title = title;
     }
 
-    private Task(String title, String description, UUID id, Date createdAt, TaskState currentState) {
+
+    public Task(String title, String description, UUID id, Date createdAt, TaskState currentState) {
         this.id = id;
         this.createdAt = createdAt;
         this.currentState = currentState;
         this.title = title;
         this.description = description;
+    }
+
+    public TaskState getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(TaskState currentState) {
+        this.currentState = currentState;
     }
 
     public String getID() {

@@ -1,19 +1,29 @@
 package de.ur.mi.android.demos.todo.tasks;
+import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-public class TaskManager {
+import de.ur.mi.android.demos.todo.database.DatabaseHelper;
+import de.ur.mi.android.demos.todo.database.TaskQueryResultListener;
+
+public class TaskManager implements TaskQueryResultListener {
 
     private final TaskManagerListener listener;
     private final ArrayList<Task> tasks;
+    private final DatabaseHelper dbHelper;
 
-    public TaskManager(TaskManagerListener listener) {
+    public TaskManager(Activity context, TaskManagerListener listener) {
         this.listener = listener;
+        this.dbHelper = new DatabaseHelper(context);
         this.tasks = new ArrayList<>();
+        dbHelper.retrieveAllTasks(this);
     }
 
     public void addTask(Task taskToAdd) {
         tasks.add(taskToAdd);
+        dbHelper.addTask(taskToAdd);
         listener.onTaskListUpdated();
     }
 
@@ -37,6 +47,7 @@ public class TaskManager {
             } else {
                 taskToToggle.markAsClosed();
             }
+            dbHelper.updateTask(taskToToggle);
             listener.onTaskListUpdated();
         }
     }
@@ -48,6 +59,14 @@ public class TaskManager {
         }
         Collections.sort(currentTasks);
         return currentTasks;
+    }
+
+    @Override
+    public void onQueryResult(List<Task> taskList) {
+        for(Task task : taskList){
+            this.tasks.add(task);
+        }
+        listener.onTaskListUpdated();
     }
 
     public interface TaskManagerListener {
