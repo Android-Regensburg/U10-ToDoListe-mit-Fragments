@@ -1,6 +1,6 @@
 {
     "title": "ToDo Liste mit Fragments",
-    "abstract": "In dieser Aufgabe... ",
+    "abstract": "In dieser Aufgabe lernen Sie mit Fragmenten wiederverwendbare Komponenten der Benutzeroberfläche Ihrer App kennen. Indem Sie die ToDo-Liste aus dem 5. Übunbsblatt erweitern, machen Sie sich mit dem Erstellen von Fragmenten, dem Verwalten von eigenen Layouts innerhalb dieser, sowie dem Anbinden an eine Aktivity vertraut. Zudem werden bereits bekannte Themenfelder, wie Datenbanken und RecyclerViews aufgegriffen auf aufgefrischt.",
     "hasStarterCode": true,
     "hasSolutionCode": true,
     "hasSimpleSolutionCode": false,
