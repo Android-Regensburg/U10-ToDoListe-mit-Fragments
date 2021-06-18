@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import de.ur.mi.android.demos.todo.MainActivity;
 import de.ur.mi.android.demos.todo.R;
 import de.ur.mi.android.demos.todo.tasks.Task;
-import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapterLongClick;
+import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
 
 /**Fragment mit RecyclerView zur Darstellung aller erzeugten Tasks*/
 public class TaskListFragment extends Fragment {
 
     private RecyclerView tasksRecyclerView;
     private FloatingActionButton addTaskBtn;
-    private TaskListRecyclerAdapterLongClick adapter;
+    private TaskListRecyclerAdapter adapter;
 
     @Nullable
     @Override
@@ -34,7 +34,7 @@ public class TaskListFragment extends Fragment {
     private void initUI(View view){
         addTaskBtn = view.findViewById(R.id.add_task_fab);
         tasksRecyclerView = view.findViewById(R.id.tasks_recycler_view);
-        adapter = new TaskListRecyclerAdapterLongClick((MainActivity)getActivity(), (MainActivity)getActivity());
+        adapter = new TaskListRecyclerAdapter((MainActivity)getActivity(), (MainActivity)getActivity());
         tasksRecyclerView.setAdapter(adapter);
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override

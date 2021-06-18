@@ -22,7 +22,7 @@ import de.ur.mi.android.demos.todo.ui.viewholder.TaskListViewHolder;
  * User Interface auf unterschiedliche Art und Weise dargestellt.
  */
 
-public class TaskListRecyclerAdapterLongClick
+public class TaskListRecyclerAdapter
         extends RecyclerView.Adapter<TaskListViewHolder>
         implements TaskListViewHolder.TaskListViewHolderLongClickListener, TaskListViewHolder.TaskListViewHolderClickListener   {
 
@@ -53,7 +53,7 @@ public class TaskListRecyclerAdapterLongClick
      *
      * @param longClickedListener Listener, der über die Interaktionen der Nutzer*innen mit den Listeneinträgen informiert werden soll
      */
-    public TaskListRecyclerAdapterLongClick(TaskLongClickedListener longClickedListener, TaskSelectedListener selectedListener) {
+    public TaskListRecyclerAdapter(TaskLongClickedListener longClickedListener, TaskSelectedListener selectedListener) {
         this.longClickedListener = longClickedListener;
         this.selectedListener = selectedListener;
         this.tasks = new ArrayList<>();

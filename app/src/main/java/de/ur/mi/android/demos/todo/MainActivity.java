@@ -7,12 +7,12 @@ import de.ur.mi.android.demos.todo.fragments.DetailFragment;
 import de.ur.mi.android.demos.todo.fragments.TaskListFragment;
 import de.ur.mi.android.demos.todo.tasks.Task;
 import de.ur.mi.android.demos.todo.tasks.TaskManager;
-import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapterLongClick;
+import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements
-        TaskListRecyclerAdapterLongClick.TaskLongClickedListener,
-        TaskListRecyclerAdapterLongClick.TaskSelectedListener,
+        TaskListRecyclerAdapter.TaskLongClickedListener,
+        TaskListRecyclerAdapter.TaskSelectedListener,
         TaskManager.TaskManagerListener,
         CreateTaskDialogFragment.OnTaskCreationListener {
 

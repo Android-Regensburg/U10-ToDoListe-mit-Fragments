@@ -24,7 +24,7 @@ public class CreateTaskDialogFragment extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        listener = (OnTaskCreationListener) getActivity();
+        listener = (OnTaskCreationListener) context;
     }
 
     @NonNull
