@@ -12,8 +12,8 @@ Das Ziel dieser Aufgabe ist die Erweiterung der ToDo App aus dem 5. Übungsblatt
 
 ## Vorgaben
 Im Startercode finden Sie den Lösungsvorschlag zum [5. Übungsblatt (Persistente ToDo-Liste)](https://android-regensburg.github.io/AssignmentViewer/index.html#Android-Regensburg/U05-Persistente-ToDo-Liste), sowie einige Ergänzungen:
-- Überarbeitete Room-Datenbank, welche ihre Abragen nun in separaten Threads handhabt. Die Datenbank muss in dieser Aufgabe nicht verändert werden.
-- Vorgefertigte XML-Layouts für die drei zu erstellenden Fragmente
+- Überarbeitete Room-Datenbank, welche ihre Abragen nun in separaten Threads handhabt. **Die Datenbank muss in dieser Aufgabe nicht verändert werden**.
+- Vorgefertigte XML-Layouts für die drei zu erstellenden Fragmente.
 - Zwei Versionen der activity_main.xml, eine für Smarphones und eine für größere Geräte (z.B. Tablets). Beachten Sie dabei, dass die jeweils geeignete Layout-Datei für das von Ihnen verwendete Gerät automatisch verwendet wird, sodass Sie sich darüber keine Gedanken machen müssen. Einen Überblick darüber, wie Sie selbst alternative Layouts für unterschiedliche Gerätegrößen definieren können, finden Sie [hier](https://developer.android.com/training/multiscreen/screensizes#alternative-layouts).
 
 ## Vorgehen
