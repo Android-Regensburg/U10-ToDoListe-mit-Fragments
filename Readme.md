@@ -43,7 +43,7 @@ Indem Sie eine neue Instanz der `CreateTaskDialogFragment`-Klasse erstellen und 
 Erstellen Sie eine Klasse `DetailFragment`, die von Fragment erbt. Laden Sie wie auch schon beim `TaskListFragment` zunächst die passende XML-Layout-Datei und referenzieren sie benötigte Views im Code. Das `DetailFragment` soll zudem über eine öffentliche Methode verfügen, die ein Task-Objekt übergeben bekommt und die Attribute (Titel und Description) von diesem in den entsprechenden Views anzeigt. 
 
 ### Einbinden der Fragmente in die MainActivity
-Ersetzen Sie zunächst im Code die "alte" Layout-Datei ohne Fragmente durch die neuere Version. 
+Ersetzen Sie zunächst im Code das Laden der "alten" Layout-Datei ohne Fragmente durch die neuere Version. 
 Erstellen Sie sich nun an den entsprechenden Stellen der `MainActivity` eine Instanz des `DetailFragments` und des `TaskListFragments`. Laden Sie das passende Fragment in den FragmentContainer des Layouts, damit es im UI angezeigt werden kann. 
 Übergeben Sie dem `TaskListFragment` über seine öffentliche Methode an geeigneten Stellen die aktualisierte Task-Liste.
 Überlegen Sie sich zudem, an welcher Stelle im Code es Sinn macht, das `TaskListFragment` durch das `DetailFragment` zu ersetzten und Implementieren sie diesen Mechanismus, indem sie den Inhalt des `FragmentContainers` ersetzten.
