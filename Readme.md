@@ -22,17 +22,29 @@ Im Startercode finden Sie den Lösungsvorschlag zum [5. Übungsblatt (Persistent
 - Zwei Versionen der activity_main.xml, eine für Smarphones und eine für größere Geräte (z.B. Tablets). Beachten Sie dabei, dass die jeweils geeignete Layout-Datei für das von Ihnen verwendete Gerät automatisch geladen wird, sodass Sie sich darüber keine Gedanken machen müssen. Einen Überblick darüber, wie Sie selbst alternative Layouts für unterschiedliche Gerätegrößen definieren können, finden Sie [hier](https://developer.android.com/training/multiscreen/screensizes#alternative-layouts).
 
 ## Vorgehen
-Versuchen Sie zunächst, die reine Smarphone-App zu entwickeln. Sobald mit dieser Version alles funktioniert, kann anschließend durch Anpassung der MainActivity die Tablet-Variante eingebaut werden.
+Versuchen Sie zunächst, die reine Smarphone-App zu entwickeln. Sobald mit dieser Version alles funktioniert, kann anschließend durch Anpassung der MainActivity die Tablet-Variante eingebaut werden. 
 
-### Implementieren des TaskList-Fragments
-
+### Implementieren des TaskListFragments
+Erstellen Sie eine Klasse `TaskListFragment`, die von Fragment erbt. Laden Sie dann die passende XML-Layout-Datei, indem sie die passende Lifecycle-Methode des Fragments überschreiben. Wie auch schon aus den Activities bekannt, können Sie dann die benötigten Views aus der XML-Datei per ID im Code referenzieren. 
+Die RecyclerView muss zudem auch noch mit dem TaskListRecyclerAdapter verknüpft werden, um die Inhalte entsprechend anzeigen zu können. 
+Ergänzen Sie das Fragment zudem um eine öffentliche Methode, über die dem RecyclerAdapter eine neue Datenliste übergeben werden kann.
 
 ### Implementieren des Dialog-Fragments zur Erstellung von neuen Tasks
+Erstellen Sie eine Klasse `CreateTaskDialogFragment`, die von DialogFragment erbt und laden Sie auch hier die passende Layout-Datei (siehe [hier](https://developer.android.com/guide/fragments/dialogs#custom)). Belegen Sie die beiden Buttons des Layouts mit Klick-Listenern und überlegen Sie sich sinnvolle Aktionen, die bei einem jeweiligen Klick ausgeführt werden sollen. 
+
+Erstellen Sie zudem ein Listener-Interface, das es Ihnen ermöglicht, einen fertig erstellten Task an die MainActivity zu senden. Um die MainActivity innerhalb der CreateTaskDialogFragment-Klasse als Listener registrieren zu können, überschreiben Sie die onAttach()-Methode. Diese wird aufgerufen, wenn der Dialog an seinen Kontext (in diesem Fall die MainActivity) geheftet wird. Dem Listener kann dann der `context` Parameter zugewiesen werden (Casting erforderlich). 
+
+Indem Sie eine neue Instanz der CreateTaskDialogFragment-Klasse erstellen und auf dieser die show() Methode aufrufen, können sie das DialogFragment anzeigen lassen. Überlegen Sie sich, an welcher Stelle in ihrem Code das sinnvoll ist.
 
 ### Implementieren des Detail-Fragments
+Erstellen Sie eine Klasse `DetailFragment`, die von Fragment erbt. Laden Sie wie auch schon beim TaskListFragment zunächst die passende XML-Layout-Datei und referenzieren sie benötigte Views im Code. Das DetailFragment soll zudem über eine öffentliche Methode verfügen, die ein Task-Objekt übergeben bekommt und die Attribute (Titel und Description) von diesem in den entsprechenden Views anzeigt. 
 
 ### Einbinden der Fragmente in die MainActivity
+Erstellen Sie sich nun an den entsprechenden Stellen der MainActivity eine Instanz des DetailFragments und des TaskListFragments. 
+Übergen Sie dem TaskListFragment über seine öffentliche Methode an geeigneten Stellen die upgedatete TaskListe.
+Überlegen Sie sich zudem, an welcher Stelle im Code es Sinn macht, das TaskListFragment durch das DetailFragment zu ersetzten und Implementieren sie diesen Mechanismus, indem sie den Inhalt des FragmentContainers ersetzten.
 
 ### Einbauen der Tablet-Variante
+
 
 ## Screenshots der Anwendung auf unterschiedlichen Gerättypen
