@@ -60,4 +60,4 @@ Nachdem die Smartphone Version nun lauffähig ist, können Sie durch entsprechen
 ### Tablet
 |  Taskliste und Detailansicht auf dem Tablet   |   Dialogfragment auf dem Tablet   |
 |:------:|:-------:|
-| ![Screenshots des UI am Tablet](./docs/ui_tablet.png)  | ![Screenshots des UI am Tablet](./docs/dialog_tablet.png)  |
+| ![Screenshots des UI am Tablet](./docs/ui_tablet.PNG)  | ![Screenshots des UI am Tablet](./docs/dialog_tablet.PNG)  |
