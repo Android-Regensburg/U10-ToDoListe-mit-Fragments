@@ -52,3 +52,12 @@ Erstellen Sie sich nun an den entsprechenden Stellen der `MainActivity` eine Ins
 Nachdem die Smartphone Version nun lauffähig ist, können Sie durch entsprechende Erweiterungen in der `MainActivity` die Tablet-Variante mit einbauen. Beachten Sie, dass sie hier nicht nur einen FragmentContainer zur Verfügung haben, bei dem Sie das aktuelle Fragment immer mit dem neuen ersetzen müssen, sondern beide Fragmente sind gleichzeitig verfügbar. Passen Sie vor diesem Hintergrund die Reaktion Ihrer Anwendung auf die Auswahl eines Eintrags an. Unterscheiden Sie hier beide Fälle (z.B. über den _Check_ ob das `DetailFragment` aktuell verfügbar ist) und Ergänzen Sie eine Option, die den ausgewählten Task direkt im Fragment anzeigt, statt dieses zuerst zu erstellen bzw. anzuzeigen.
 
 ## Screenshots der Anwendung auf unterschiedlichen Gerättypen
+### Smartphone
+|  Tasklist auf dem Handy   |   Detailansicht auf dem Handy    |   Dialogfragment auf dem Handy    |
+|:------:|:-------:|:-------:|
+| ![Screenshots des UI am Handy](./docs/taskliste_phone.png)  | ![Screenshots des UI am Handy](./docs/detailansicht_phone.png)  |![Screenshots des UI am Handy](./docs/dialog_phone.png)  |
+
+### Tablet
+|  Taskliste und Detailansicht auf dem Tablet   |   Dialogfragment auf dem Tablet   |
+|:------:|:-------:|
+| ![Screenshots des UI am Tablet](./docs/ui_tablet.png)  | ![Screenshots des UI am Tablet](./docs/dialog_tablet.png)  |
