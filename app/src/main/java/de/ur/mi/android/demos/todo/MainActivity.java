@@ -3,11 +3,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import de.ur.mi.android.demos.todo.tasks.Task;
 import de.ur.mi.android.demos.todo.tasks.TaskManager;
-import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapterLongClick;
+import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
 
 public class MainActivity extends AppCompatActivity implements
-        TaskListRecyclerAdapterLongClick.TaskLongClickedListener,
-        TaskListRecyclerAdapterLongClick.TaskSelectedListener,
+        TaskListRecyclerAdapter.TaskLongClickedListener,
+        TaskListRecyclerAdapter.TaskSelectedListener,
         TaskManager.TaskManagerListener{
 
     public TaskManager taskManager;
