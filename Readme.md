@@ -45,6 +45,6 @@ Erstellen Sie sich nun an den entsprechenden Stellen der MainActivity eine Insta
 Überlegen Sie sich zudem, an welcher Stelle im Code es Sinn macht, das TaskListFragment durch das DetailFragment zu ersetzten und Implementieren sie diesen Mechanismus, indem sie den Inhalt des FragmentContainers ersetzten.
 
 ### Einbauen der Tablet-Variante
-
+Nachdem die Smartphone Version nun lauffähig ist, können Sie durch entsprechende Erweiterungen in der MainActivity die Tablet-Variante mit einbauen. Beachten Sie, dass sie hier nicht nur einen FragmentContainer zur Verfügung haben, bei dem Sie das aktuelle Fragment immer mit dem neuen ersetzen müssen, sondern beide Fragmente sind gleichzeitig verfügbar. 
 
 ## Screenshots der Anwendung auf unterschiedlichen Gerättypen
