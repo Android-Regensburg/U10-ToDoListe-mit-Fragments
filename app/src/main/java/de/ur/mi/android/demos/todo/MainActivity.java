@@ -1,6 +1,13 @@
 package de.ur.mi.android.demos.todo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import de.ur.mi.android.demos.todo.tasks.Task;
 import de.ur.mi.android.demos.todo.tasks.TaskManager;
 import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
@@ -11,12 +18,16 @@ public class MainActivity extends AppCompatActivity implements
         TaskManager.TaskManagerListener{
 
     public TaskManager taskManager;
+    private RecyclerView recyclerView;
+    private TaskListRecyclerAdapter adapter;
+    private EditText taskTitleInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTaskManager();
         initUI();
+        taskManager.requestUpdate();
     }
 
     private void initTaskManager() {
@@ -24,26 +35,52 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initUI() {
-        setContentView(R.layout.activity_main);
-        initFragments();
+        setContentView(R.layout.activity_main_old);
+        initRecyclerView();
+        initInputElements();
     }
 
-    private void initFragments(){
-        // TODO: Fragmente initialisieren
+    private void initRecyclerView(){
+        recyclerView = findViewById(R.id.task_list);
+        adapter = new TaskListRecyclerAdapter(this, this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void initInputElements(){
+        taskTitleInput = findViewById(R.id.input_title);
+        ImageButton addButton = findViewById(R.id.input_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String currentInput = taskTitleInput.getText().toString().trim();
+                onUserInputClicked(currentInput);
+            }
+        });
+    }
+
+    private void onUserInputClicked(String input){
+        if (input.length() > 0) {
+            Task t = new Task(input);
+            taskManager.addTask(t);
+            taskTitleInput.setText("");
+            taskTitleInput.requestFocus();
+        }
     }
 
     @Override
     public void onTaskListUpdated() {
-        // TODO: dem TaskListFragment die neuen Daten übergeben, sodass diese korrekt in der RecyclerView angezeigt werden können
+        adapter.setTasks(taskManager.getCurrentTasks());
     }
 
+    /**Wird aufgerufen, wenn ein Element der RecyclerView lange geklickt wird*/
     @Override
     public void onTaskLongClicked(Task task) {
         taskManager.toggleTaskStateForId(task.getID());
     }
 
+    /**Wird aufgerufen, wenn ein Element der RecyclerView geklickt wird*/
     @Override
     public void onTaskSelected(Task task) {
-        // TODO: ausgewählten Task in die Detailansicht laden
+
     }
 }

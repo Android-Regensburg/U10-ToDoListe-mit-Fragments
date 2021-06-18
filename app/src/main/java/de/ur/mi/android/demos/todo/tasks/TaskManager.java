@@ -19,6 +19,10 @@ public class TaskManager implements TaskQueryResultListener {
         dbHelper.retrieveAllTasks(this);
     }
 
+    public void requestUpdate() {
+        listener.onTaskListUpdated();
+    }
+
     public void addTask(Task taskToAdd) {
         tasks.add(taskToAdd);
         dbHelper.addTask(taskToAdd);

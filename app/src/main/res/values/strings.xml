@@ -2,7 +2,7 @@
     <string name="app_name">ToDo-Liste</string>
     <string name="input_hint">Neuer Task</string>
     <string name="input_button_label">+</string>
-    <string name="app_description">Drücke länger auf ein Item, um dessen Status zu wechseln.</string>
+    <string name="long_click_description">Drücke länger auf ein Item, um dessen Status zu wechseln.</string>
     <string name="task_id_tag_for_views">TASK_UUID</string>
     <string name="title_taskdescription">Aufgabenbeschreibung</string>
     <string name="title_tasklist">Meine Aufgaben</string>

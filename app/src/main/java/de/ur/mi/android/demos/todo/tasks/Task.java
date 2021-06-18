@@ -46,6 +46,15 @@ public class Task implements Comparable<Task>, Serializable {
         this.title = title;
     }
 
+    @Ignore
+    public Task(String title) {
+        this.id = UUID.randomUUID();
+        this.createdAt = new Date();
+        this.currentState = TaskState.OPEN;
+        this.description = "";
+        this.title = title;
+    }
+
     public Task(String title, String description, UUID id, Date createdAt, TaskState currentState) {
         this.id = id;
         this.createdAt = createdAt;
