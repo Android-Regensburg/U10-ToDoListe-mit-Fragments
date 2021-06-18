@@ -6,7 +6,7 @@ Das Ziel dieser Aufgabe ist die Erweiterung der ToDo App aus dem 5. Übungsblatt
 
 ## Allgmeine Hinweise
 
-* Für die Umsetzung der dynamischen Anzeige sollen drei [Fragmente](https://developer.android.com/guide/components/fragments) verwendet werden. Das `TaskListFragment` ist für die Anzeige aller Tasks mithilfe einer RecyclerView zuständig. Das `DetailFragment` ermöglicht eine detailliertere Ansicht eines einzelnen ausgewählten Tasks. Das `CreateTaskDialogFragment` ist ein [DialogFragment](https://developer.android.com/guide/fragments/dialogs) zum Erstellen eines neuen Tasks.  
+* Für die Umsetzung der dynamischen Anzeige sollen drei [Fragmente](https://developer.android.com/guide/components/fragments) verwendet werden. Das `TaskListFragment` ist für die Anzeige aller Tasks mithilfe einer RecyclerView zuständig. Das `DetailFragment` ermöglicht eine detailliertere Ansicht eines einzelnen ausgewählten Tasks. Das `CreateTaskDialogFragment` ist ein [DialogFragment](https://developer.android.com/guide/fragments/dialogs) zum Erstellen eines neuen Tasks und kann über den FloatingActionButton des TaskListFragments aufgerufen werden.  
 
 * Um die App sowohl auf dem Smartphone, als auch auf einem Tablet testen zu können, müssen Sie sich über den AVD-Manager ein passendes Tablet (z.B. Pixel C) einrichten. 
 
