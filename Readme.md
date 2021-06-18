@@ -55,7 +55,7 @@ Nachdem die Smartphone Version nun lauffähig ist, können Sie durch entsprechen
 ### Smartphone
 |  Tasklist auf dem Handy   |   Detailansicht auf dem Handy    |   Dialogfragment auf dem Handy    |
 |:------:|:-------:|:-------:|
-| ![Screenshots des UI am Handy](./docs/taskliste_phone.PNG)  | ![Screenshots des UI am Handy](./docs/detailansicht_phone.PNG)  |![Screenshots des UI am Handy](./docs/dialog_phone.PNG)  |
+| ![Screenshots des UI am Handy](./docs/tasklist_phone.PNG)  | ![Screenshots des UI am Handy](./docs/detailansicht_phone.PNG)  |![Screenshots des UI am Handy](./docs/dialog_phone.PNG)  |
 
 ### Tablet
 |  Taskliste und Detailansicht auf dem Tablet   |   Dialogfragment auf dem Tablet   |
