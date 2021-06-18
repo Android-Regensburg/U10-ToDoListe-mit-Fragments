@@ -24,7 +24,8 @@ import de.ur.mi.android.demos.todo.ui.viewholder.TaskListViewHolder;
 
 public class TaskListRecyclerAdapterLongClick
         extends RecyclerView.Adapter<TaskListViewHolder>
-        implements TaskListViewHolder.TaskListViewHolderLongClickListener, TaskListViewHolder.TaskListViewHolderClickListener   {
+        implements TaskListViewHolder.TaskListViewHolderLongClickListener,
+        TaskListViewHolder.TaskListViewHolderClickListener   {
 
     /* Konstanten, die unterschiedliche Typen von Einträgen des angeschlossenen RecyclerViews identifizieren.
      * Das ist dann notwendig, wenn nicht alle Einträge einer Liste auf die gleiche Art und Weise dargestellt werden sollen,
