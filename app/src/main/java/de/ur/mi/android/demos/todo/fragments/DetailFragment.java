@@ -21,19 +21,7 @@ public class DetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail_view, container, false);
         initUI(view);
-        receiveExtras();
         return view;
-    }
-
-    // die ggf. übergebenen Daten aus der MainActivity empfangen
-    private void receiveExtras(){
-        Bundle extras = getArguments();
-        if(extras != null){
-            Task task = (Task) extras.getSerializable(MainActivity.TASK_KEY);
-            if(task != null){
-                displayTask(task);
-            }
-        }
     }
 
     private void initUI(View view){

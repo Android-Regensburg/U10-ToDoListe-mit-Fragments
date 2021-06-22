@@ -1,6 +1,7 @@
 package de.ur.mi.android.demos.todo;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import de.ur.mi.android.demos.todo.fragments.CreateTaskDialogFragment;
 import de.ur.mi.android.demos.todo.fragments.DetailFragment;
@@ -66,16 +67,13 @@ public class MainActivity extends AppCompatActivity implements
 
     // Lädt das DetailFragment in den Fragment-Container
     private void showDetailFragment(Task task){
-        Bundle data = new Bundle();
-        // Die Task Klasse implementiert das Serializable Interface und kann daher dem Bundle übergeben werden
-        data.putSerializable(TASK_KEY, task);
-        DetailFragment detailFragment = new DetailFragment();
-        // ausgewählten Task an das Fragment übergeben, sodass das UI diesen Task anzeigen kann
-        detailFragment.setArguments(data);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // ersetzen des aktuellen Fragments im Container durch das DetailFragment
-        transaction.replace(R.id.container_task_list, detailFragment);
-        transaction.addToBackStack(null);
-        transaction.commit(); // Führt die Transaktion durch
+        DetailFragment df = new DetailFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container_task_list, df)
+                .addToBackStack(null)
+                .commit(); // commit führt die Transaktion nicht sofort durch
+        fragmentManager.executePendingTransactions(); // ausstehende Transaktionen sofort durchführen
+        df.displayTask(task);
     }
 }

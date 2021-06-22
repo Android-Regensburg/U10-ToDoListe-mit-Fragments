@@ -25,7 +25,6 @@ public class TaskListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
-        System.out.println("oncreate View");
         initUI(view);
         ((MainActivity)getActivity()).onTaskListUpdated(); // initiales Update für den Adapter
         return view;
