@@ -18,7 +18,7 @@ public class DatabaseHelper {
     }
 
     private void initDatabase(){
-        db = Room.databaseBuilder(context, TaskDatabase.class, DATABASE_NAME).allowMainThreadQueries().build();
+        db = Room.databaseBuilder(context, TaskDatabase.class, DATABASE_NAME).build();
     }
 
     public void addTask(Task task) {
