@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements
         TaskManager.TaskManagerListener,
         CreateTaskDialogFragment.OnTaskCreationListener {
 
-    public static final String TASK_KEY = "task";
     public TaskManager taskManager;
     private DetailFragment detailFragment;
     private TaskListFragment taskListFragment;
