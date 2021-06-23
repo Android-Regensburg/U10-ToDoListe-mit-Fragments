@@ -34,7 +34,7 @@ public class DatabaseHelper {
     }
 
 
-    /*Datenbankoperationen laufen jeweils in separaten Thread*/
+    /*Datenbankoperationen laufen jeweils in einem separaten Thread*/
     private static abstract class DBOperationThread implements Runnable{
 
         void start() {
