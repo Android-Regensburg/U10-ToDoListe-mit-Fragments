@@ -12,18 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TaskListViewHolder extends RecyclerView.ViewHolder {
 
     public final View taskView;
-    public final TaskListViewHolderLongClickListener viewHolderLongClickListener;
-    public final TaskListViewHolderClickListener viewHolderClickListener;
+    public ViewHolderClickListener listener;
 
     /**
      * Wird im TaskListRecyclerAdapter aufgerufen, wenn ein neuer View für die Darstellung eines Eintrags
      * benötigt wird.
      *
      */
-    public TaskListViewHolder(@NonNull View itemView, TaskListViewHolderLongClickListener longClickListener, TaskListViewHolderClickListener clickListener) {
+    public TaskListViewHolder(@NonNull View itemView, ViewHolderClickListener listener) {
         super(itemView);
-        this.viewHolderLongClickListener = longClickListener;
-        this.viewHolderClickListener = clickListener;
+        this.listener = listener;
         taskView = itemView;
         taskView.setOnClickListener(new View.OnClickListener() {
             /*
@@ -31,7 +29,7 @@ public class TaskListViewHolder extends RecyclerView.ViewHolder {
             */
             @Override
             public void onClick(View v) {
-                viewHolderClickListener.onViewHolderClicked(getAdapterPosition());
+                listener.onViewHolderClicked(getAdapterPosition());
             }
         });
         taskView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -41,7 +39,7 @@ public class TaskListViewHolder extends RecyclerView.ViewHolder {
             */
             @Override
             public boolean onLongClick(View v) {
-                viewHolderLongClickListener.onViewHolderLongClicked(getAdapterPosition());
+                listener.onViewHolderLongClicked(getAdapterPosition());
                 return true;
             }
         });
@@ -51,17 +49,13 @@ public class TaskListViewHolder extends RecyclerView.ViewHolder {
      * Interface für die Komponenten, die sich für lange Klicks der Nutzer*innen auf diesem ViewHolder bzw. dem
      * umschlossenen View interessieren
      */
-    public interface TaskListViewHolderLongClickListener {
+    public interface ViewHolderClickListener {
+        void onViewHolderClicked(int position);
         void onViewHolderLongClicked(int position);
     }
 
-    /**
-     * Interface für die Komponenten, die sich für normale Klicks der Nutzer*innen auf diesem ViewHolder bzw. dem
-     * umschlossenen View interessieren
-     */
-    public interface TaskListViewHolderClickListener{
-        void onViewHolderClicked(int position);
-    }
+
+
 
 
 }

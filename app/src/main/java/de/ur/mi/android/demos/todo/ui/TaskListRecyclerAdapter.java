@@ -6,6 +6,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -22,9 +25,8 @@ import de.ur.mi.android.demos.todo.ui.viewholder.TaskListViewHolder;
  * User Interface auf unterschiedliche Art und Weise dargestellt.
  */
 
-public class TaskListRecyclerAdapter
-        extends RecyclerView.Adapter<TaskListViewHolder>
-        implements TaskListViewHolder.TaskListViewHolderLongClickListener, TaskListViewHolder.TaskListViewHolderClickListener   {
+public class TaskListRecyclerAdapter extends RecyclerView.Adapter<TaskListViewHolder> implements TaskListViewHolder.ViewHolderClickListener
+          {
 
     /* Konstanten, die unterschiedliche Typen von Einträgen des angeschlossenen RecyclerViews identifizieren.
      * Das ist dann notwendig, wenn nicht alle Einträge einer Liste auf die gleiche Art und Weise dargestellt werden sollen,
@@ -36,8 +38,7 @@ public class TaskListRecyclerAdapter
     private static final int VIEW_TYPE_FOR_CLOSED_ITEMS = 2; // Repräsentiert eine bereits geschlossene Aufgabe
 
     // Listener, der über Klicks auf einzelne Einträge im RecyclerView informiert werden soll
-    private final TaskLongClickedListener longClickedListener;
-    private final TaskSelectedListener selectedListener;
+    private AdapterClickListener listener;
 
     /**
      * Achtung: Dieser Adapter nutzt eine Kopie der Aufgabenliste, die vom TaskManager verwaltet wird. Ändern sich
@@ -50,12 +51,9 @@ public class TaskListRecyclerAdapter
 
     /**
      * Erzeugt einen neuen Adapter
-     *
-     * @param longClickedListener Listener, der über die Interaktionen der Nutzer*innen mit den Listeneinträgen informiert werden soll
      */
-    public TaskListRecyclerAdapter(TaskLongClickedListener longClickedListener, TaskSelectedListener selectedListener) {
-        this.longClickedListener = longClickedListener;
-        this.selectedListener = selectedListener;
+    public TaskListRecyclerAdapter(AdapterClickListener listener) {
+        this.listener = listener;
         this.tasks = new ArrayList<>();
     }
 
@@ -98,8 +96,7 @@ public class TaskListRecyclerAdapter
     @NonNull
     @Override
     public TaskListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TaskListViewHolder vh = createViewHolderForType(parent, viewType);
-        return vh;
+        return createViewHolderForType(parent, viewType);
     }
 
     /**
@@ -139,17 +136,16 @@ public class TaskListRecyclerAdapter
      * @return Der erstellte VieHolder
      */
     private TaskListViewHolder createViewHolderForType(ViewGroup parent, int viewType) {
-        View v;
+        View view;
         if (viewType == VIEW_TYPE_FOR_OPEN_ITEMS) {
             // Erstellen des View für offene Aufgaben
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_item, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_item, parent, false);
         } else {
             // Alternativ: Erstellen des View für abgeschlossene Aufgaben
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_item_done, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_item_done, parent, false);
         }
         // Erstellen des ViewHolders auf Basis der oben ausgewählten View
-        TaskListViewHolder vh = new TaskListViewHolder(v, this, this);
-        return vh;
+        return new TaskListViewHolder(view, this);
     }
 
     /**
@@ -160,15 +156,15 @@ public class TaskListRecyclerAdapter
      * @param date Datum, das formatiert werden soll
      * @return Formatierte Stringrepräsentation des übergebenen Datums
      */
-    private String getFormattedDateForUI(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        Date now = new Date();
-        long timeDifferenceInMilliseconds = Math.abs(now.getTime() - date.getTime());
+    private String getFormattedDateForUI(ZonedDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        ZonedDateTime now = ZonedDateTime.now();
+        long timeDifferenceInMilliseconds = Math.abs(now.toInstant().toEpochMilli()- date.toInstant().toEpochMilli());
         long timeDifferenceInDays = TimeUnit.DAYS.convert(timeDifferenceInMilliseconds, TimeUnit.MILLISECONDS);
         if (timeDifferenceInDays > 0) {
-            sdf = new SimpleDateFormat("dd. MMMM", Locale.getDefault());
+            formatter = DateTimeFormatter.ofPattern("dd. MMMM");
         }
-        return sdf.format(date);
+        return formatter.format(date);
     }
 
     /**
@@ -182,7 +178,7 @@ public class TaskListRecyclerAdapter
     public void onViewHolderLongClicked(int position) {
         Task task = tasks.get(position);
         if (task != null) {
-            longClickedListener.onTaskLongClicked(task);
+            listener.onAdapterLongClick(task);
         }
     }
 
@@ -197,24 +193,13 @@ public class TaskListRecyclerAdapter
     public void onViewHolderClicked(int position) {
         Task task = tasks.get(position);
         if (task != null) {
-            selectedListener.onTaskSelected(task);
+            listener.onAdapterClick(task);
         }
     }
 
-    /**
-     * Interface für Observer, die über einen langen Klick auf ein Element der RecyclerView informiert werden sollen.
-     * Wird von der MainActiviy implementiert, die sich selbst als Listener beim Erstellen dieses Adapters übergibt.
-     */
-    public interface TaskLongClickedListener {
-        void onTaskLongClicked(Task task);
-    }
-
-    /***
-     * Interface für Observer, die über einen einfachen Klick auf ein Element der RecyclerView informiert werden sollen.
-     * Wir von der MainActivity implementiert, die sich selbst als Listener beim Erstellen dieses Adapters übergibt.
-     */
-    public interface TaskSelectedListener{
-        void onTaskSelected(Task task);
+    public interface AdapterClickListener{
+        void onAdapterClick(Task task);
+        void onAdapterLongClick(Task task);
     }
 
 }

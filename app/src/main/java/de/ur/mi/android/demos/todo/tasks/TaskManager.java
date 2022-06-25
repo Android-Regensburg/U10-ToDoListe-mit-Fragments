@@ -49,9 +49,7 @@ public class TaskManager implements TaskQueryResultListener {
     /*Wird aufgerufen, wenn alle Tasks aus der Datenbank erfolgreich geladen wurden*/
     @Override
     public void onQueryResult(List<Task> taskList) {
-        for(Task task : taskList){
-            this.tasks.add(task);
-        }
+        this.tasks.addAll(taskList);
         listener.onTaskListUpdated();
     }
 

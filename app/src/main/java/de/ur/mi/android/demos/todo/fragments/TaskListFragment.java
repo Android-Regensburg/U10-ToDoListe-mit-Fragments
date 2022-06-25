@@ -33,7 +33,7 @@ public class TaskListFragment extends Fragment {
     private void initUI(View view){
         addTaskBtn = view.findViewById(R.id.add_task_fab);
         tasksRecyclerView = view.findViewById(R.id.tasks_recycler_view);
-        adapter = new TaskListRecyclerAdapter((MainActivity)getActivity(), (MainActivity)getActivity());
+        adapter = new TaskListRecyclerAdapter((MainActivity)getActivity());
         tasksRecyclerView.setAdapter(adapter);
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override

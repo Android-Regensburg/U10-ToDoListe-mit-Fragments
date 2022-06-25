@@ -12,8 +12,7 @@ import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements
-        TaskListRecyclerAdapter.TaskLongClickedListener,
-        TaskListRecyclerAdapter.TaskSelectedListener,
+        TaskListRecyclerAdapter.AdapterClickListener,
         TaskManager.TaskManagerListener,
         CreateTaskDialogFragment.OnTaskCreationListener {
 
@@ -49,20 +48,6 @@ public class MainActivity extends AppCompatActivity implements
         taskManager.addTask(task);
     }
 
-    @Override
-    public void onTaskLongClicked(Task task) {
-        taskManager.toggleTaskStateForId(task.getID());
-    }
-
-    @Override
-    public void onTaskSelected(Task task) {
-        if(detailFragment != null){
-            detailFragment.displayTask(task);
-        }
-        else{
-            showDetailFragment(task);
-        }
-    }
 
     // Lädt das DetailFragment in den Fragment-Container
     private void showDetailFragment(Task task){
@@ -74,5 +59,20 @@ public class MainActivity extends AppCompatActivity implements
                 .commit(); // commit führt die Transaktion nicht sofort durch
         fragmentManager.executePendingTransactions(); // ausstehende Transaktionen sofort durchführen
         df.displayTask(task);
+    }
+
+    @Override
+    public void onAdapterClick(Task task) {
+        if(detailFragment != null){
+            detailFragment.displayTask(task);
+        }
+        else{
+            showDetailFragment(task);
+        }
+    }
+
+    @Override
+    public void onAdapterLongClick(Task task) {
+        taskManager.toggleTaskStateForId(task.getID());
     }
 }
