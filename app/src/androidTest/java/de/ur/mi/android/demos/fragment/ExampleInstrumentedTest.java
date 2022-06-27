@@ -1,4 +1,4 @@
-package de.ur.mi.android.demos.todo;
+package de.ur.mi.android.demos.fragment;
 
 import android.content.Context;
 

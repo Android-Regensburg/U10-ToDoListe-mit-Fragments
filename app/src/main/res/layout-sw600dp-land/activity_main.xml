@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_task_list"
-        android:name="de.ur.mi.android.demos.todo.fragments.TaskListFragment"
+        android:name="de.ur.mi.android.demos.fragment.fragments.TaskListFragment"
         android:layout_width="400dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_detail"
-        android:name="de.ur.mi.android.demos.todo.fragments.DetailFragment"
+        android:name="de.ur.mi.android.demos.fragment.fragments.DetailFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

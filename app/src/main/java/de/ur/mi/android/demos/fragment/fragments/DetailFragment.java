@@ -1,4 +1,4 @@
-package de.ur.mi.android.demos.todo.fragments;
+package de.ur.mi.android.demos.fragment.fragments;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import de.ur.mi.android.demos.todo.MainActivity;
-import de.ur.mi.android.demos.todo.R;
-import de.ur.mi.android.demos.todo.tasks.Task;
+
+import de.ur.mi.android.demos.fragment.R;
+import de.ur.mi.android.demos.fragment.tasks.Task;
 
 /**Fragment für die Detailansicht eines einzelnen Tasks*/
 public class DetailFragment extends Fragment {

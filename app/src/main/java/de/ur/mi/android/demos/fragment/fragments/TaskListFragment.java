@@ -1,4 +1,4 @@
-package de.ur.mi.android.demos.todo.fragments;
+package de.ur.mi.android.demos.fragment.fragments;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
-import de.ur.mi.android.demos.todo.MainActivity;
-import de.ur.mi.android.demos.todo.R;
-import de.ur.mi.android.demos.todo.tasks.Task;
-import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
+import de.ur.mi.android.demos.fragment.MainActivity;
+import de.ur.mi.android.demos.fragment.R;
+import de.ur.mi.android.demos.fragment.tasks.Task;
+import de.ur.mi.android.demos.fragment.ui.TaskListRecyclerAdapter;
 
 /**Fragment mit RecyclerView zur Darstellung aller erzeugten Tasks*/
 public class TaskListFragment extends Fragment {

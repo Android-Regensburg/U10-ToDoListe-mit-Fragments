@@ -1,8 +1,8 @@
-package de.ur.mi.android.demos.todo.database;
+package de.ur.mi.android.demos.fragment.database;
 import androidx.room.TypeConverter;
-import java.util.Date;
+
 import java.util.UUID;
-import de.ur.mi.android.demos.todo.tasks.Task;
+import de.ur.mi.android.demos.fragment.tasks.Task;
 
 public class TaskAttributeTypeConverter {
 

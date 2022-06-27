@@ -1,4 +1,4 @@
-package de.ur.mi.android.demos.todo.ui.viewholder;
+package de.ur.mi.android.demos.fragment.ui.viewholder;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

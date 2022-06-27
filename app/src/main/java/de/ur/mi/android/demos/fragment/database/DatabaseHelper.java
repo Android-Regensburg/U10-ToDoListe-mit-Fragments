@@ -1,14 +1,14 @@
-package de.ur.mi.android.demos.todo.database;
+package de.ur.mi.android.demos.fragment.database;
 import android.app.Activity;
 import androidx.room.Room;
 import java.util.List;
 import java.util.concurrent.Executors;
-import de.ur.mi.android.demos.todo.tasks.Task;
+import de.ur.mi.android.demos.fragment.tasks.Task;
 
 /**Datenbank-Helferklasse, die den Zugriff auf die Datenbank abstrahiert*/
 public class DatabaseHelper {
 
-    private static final String DATABASE_NAME = "tasks-db";
+    private static final String DATABASE_NAME = "tasks-db-fragments";
     private final Activity context;
     private TaskDatabase db;
 

@@ -1,4 +1,4 @@
-package de.ur.mi.android.demos.todo.tasks;
+package de.ur.mi.android.demos.fragment.tasks;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 /**

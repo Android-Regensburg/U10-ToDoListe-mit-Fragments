@@ -1,4 +1,4 @@
-package de.ur.mi.android.demos.todo.fragments;
+package de.ur.mi.android.demos.fragment.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
-import de.ur.mi.android.demos.todo.R;
-import de.ur.mi.android.demos.todo.tasks.Task;
+import de.ur.mi.android.demos.fragment.R;
+import de.ur.mi.android.demos.fragment.tasks.Task;
 
 /**DialogFragment für das Erstellen eines neuen Tasks*/
 public class CreateTaskDialogFragment extends DialogFragment {

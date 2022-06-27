@@ -1,10 +1,10 @@
-package de.ur.mi.android.demos.todo.tasks;
+package de.ur.mi.android.demos.fragment.tasks;
 import android.app.Activity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import de.ur.mi.android.demos.todo.database.DatabaseHelper;
-import de.ur.mi.android.demos.todo.database.TaskQueryResultListener;
+import de.ur.mi.android.demos.fragment.database.DatabaseHelper;
+import de.ur.mi.android.demos.fragment.database.TaskQueryResultListener;
 
 public class TaskManager implements TaskQueryResultListener {
 

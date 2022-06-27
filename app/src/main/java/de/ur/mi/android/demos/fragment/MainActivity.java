@@ -1,14 +1,14 @@
-package de.ur.mi.android.demos.todo;
+package de.ur.mi.android.demos.fragment;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import de.ur.mi.android.demos.todo.fragments.CreateTaskDialogFragment;
-import de.ur.mi.android.demos.todo.fragments.DetailFragment;
-import de.ur.mi.android.demos.todo.fragments.TaskListFragment;
-import de.ur.mi.android.demos.todo.tasks.Task;
-import de.ur.mi.android.demos.todo.tasks.TaskManager;
-import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
+
+import de.ur.mi.android.demos.fragment.fragments.CreateTaskDialogFragment;
+import de.ur.mi.android.demos.fragment.fragments.DetailFragment;
+import de.ur.mi.android.demos.fragment.fragments.TaskListFragment;
+import de.ur.mi.android.demos.fragment.tasks.Task;
+import de.ur.mi.android.demos.fragment.tasks.TaskManager;
+import de.ur.mi.android.demos.fragment.ui.TaskListRecyclerAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements

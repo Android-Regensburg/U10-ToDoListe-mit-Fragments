@@ -1,21 +1,18 @@
-package de.ur.mi.android.demos.todo.ui;
+package de.ur.mi.android.demos.fragment.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-import de.ur.mi.android.demos.todo.R;
-import de.ur.mi.android.demos.todo.tasks.Task;
-import de.ur.mi.android.demos.todo.ui.viewholder.TaskListViewHolder;
+import de.ur.mi.android.demos.fragment.R;
+import de.ur.mi.android.demos.fragment.tasks.Task;
+import de.ur.mi.android.demos.fragment.ui.viewholder.TaskListViewHolder;
 
 /**
  * Dieser Adapter verbindet eine ArrayList von Task-Objekten mit einem RecyclerView im UserInterface. Der
