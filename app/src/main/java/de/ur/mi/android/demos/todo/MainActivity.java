@@ -13,8 +13,7 @@ import de.ur.mi.android.demos.todo.tasks.TaskManager;
 import de.ur.mi.android.demos.todo.ui.TaskListRecyclerAdapter;
 
 public class MainActivity extends AppCompatActivity implements
-        TaskListRecyclerAdapter.TaskLongClickedListener,
-        TaskListRecyclerAdapter.TaskSelectedListener,
+        TaskListRecyclerAdapter.AdapterClickListener,
         TaskManager.TaskManagerListener{
 
     public TaskManager taskManager;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void initRecyclerView(){
         recyclerView = findViewById(R.id.task_list);
-        adapter = new TaskListRecyclerAdapter(this, this);
+        adapter = new TaskListRecyclerAdapter(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -72,15 +71,14 @@ public class MainActivity extends AppCompatActivity implements
         adapter.setTasks(taskManager.getCurrentTasks());
     }
 
-    /**Wird aufgerufen, wenn ein Element der RecyclerView lange geklickt wird*/
+
     @Override
-    public void onTaskLongClicked(Task task) {
-        taskManager.toggleTaskStateForId(task.getID());
+    public void onAdapterClicked(Task task) {
+
     }
 
-    /**Wird aufgerufen, wenn ein Element der RecyclerView geklickt wird*/
     @Override
-    public void onTaskSelected(Task task) {
-
+    public void onAdapterLongClicked(Task task) {
+        taskManager.toggleTaskStateForId(task.getID());
     }
 }

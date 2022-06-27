@@ -6,16 +6,6 @@ import de.ur.mi.android.demos.todo.tasks.Task;
 
 public class TaskAttributeTypeConverter {
 
-    // TypeConverter for Date <-> Long
-    @TypeConverter
-    public static Date millisecondsToDate(Long milliseconds) {
-        return milliseconds == null ? null : new Date(milliseconds);
-    }
-
-    @TypeConverter
-    public static Long dateToMilliseconds(Date date) {
-        return date == null ? null : date.getTime();
-    }
 
 
     // TypeConverter for UUID <-> String

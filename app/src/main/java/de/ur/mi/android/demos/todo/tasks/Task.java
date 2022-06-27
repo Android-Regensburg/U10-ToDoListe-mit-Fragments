@@ -5,6 +5,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -33,14 +36,14 @@ public class Task implements Comparable<Task>, Serializable {
     public final String description;
     public final String title;
     @ColumnInfo(name = "created_at")
-    public final Date createdAt;
+    public final long createdAt;
     @ColumnInfo(name = "current_state")
     private TaskState currentState;
 
     @Ignore
     public Task(String title, String description) {
         this.id = UUID.randomUUID();
-        this.createdAt = new Date();
+        this.createdAt = ZonedDateTime.now().toInstant().toEpochMilli();
         this.currentState = TaskState.OPEN;
         this.description = description;
         this.title = title;
@@ -49,13 +52,13 @@ public class Task implements Comparable<Task>, Serializable {
     @Ignore
     public Task(String title) {
         this.id = UUID.randomUUID();
-        this.createdAt = new Date();
+        this.createdAt = ZonedDateTime.now().toInstant().toEpochMilli();
         this.currentState = TaskState.OPEN;
         this.description = "";
         this.title = title;
     }
 
-    public Task(String title, String description, UUID id, Date createdAt, TaskState currentState) {
+    public Task(String title, String description, UUID id, long createdAt, TaskState currentState) {
         this.id = id;
         this.createdAt = createdAt;
         this.currentState = currentState;
@@ -83,7 +86,7 @@ public class Task implements Comparable<Task>, Serializable {
         return description;
     }
 
-    public Date getCreationDate() {
+    public ZonedDateTime getCreationDate() {
         return getCreationDateCopy();
     }
 
@@ -101,12 +104,11 @@ public class Task implements Comparable<Task>, Serializable {
     }
 
     public Task copy() {
-        Date creationDateFromOriginal = getCreationDateCopy();
-        return new Task(title, description, id, creationDateFromOriginal, currentState);
+        return new Task(title, description, id, createdAt, currentState);
     }
 
-    private Date getCreationDateCopy() {
-        return new Date(createdAt.getTime());
+    private ZonedDateTime getCreationDateCopy() {
+        return Instant.ofEpochMilli(createdAt).atZone(ZoneId.systemDefault());
     }
 
     @Override
@@ -120,7 +122,8 @@ public class Task implements Comparable<Task>, Serializable {
             return -1;
         }
         // Die beiden Aufgaben werden auf Basis des Erstellungsdatums sortiert (neuere vor älteren)
-        return -this.createdAt.compareTo(otherTask.createdAt);
+        Long l = createdAt;
+        return -l.compareTo(otherTask.createdAt);
     }
 
     public enum TaskState {
