@@ -3,57 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/app_title_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="20dp"
+        android:textSize="32sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/app_name"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/input_elements"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
         android:weightSum="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/app_title_label">
 
         <EditText
-            android:id="@+id/input_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/input_text"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="90"
-            android:ems="10"
-            android:hint="@string/hint_task_title"
-            android:inputType="textPersonName" />
+            android:hint="@string/input_hint"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
-        <ImageButton
+        <Button
             android:id="@+id/input_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"
+            android:textColor="@color/white"
             android:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@drawable/ic_baseline_add_32" />
-
+            android:text="@string/input_button_label" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/long_click_description"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/input_elements" />
+
+    <TextView
+        android:id="@+id/app_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/app_description"
         android:textAlignment="center"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

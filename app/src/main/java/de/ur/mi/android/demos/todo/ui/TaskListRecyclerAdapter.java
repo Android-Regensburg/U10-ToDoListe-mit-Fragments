@@ -112,7 +112,7 @@ public class TaskListRecyclerAdapter
         // Wir identifzieren über den Positionsparameter, für welchen Datensatz der ViewHolder aktualisiert werden soll
         Task task = tasks.get(position);
         // Referenzieren der einzelnen TextViews im übergebenen View
-        TextView title = holder.taskView.findViewById(R.id.list_item_title);
+        TextView title = holder.taskView.findViewById(R.id.list_item_description);
         TextView createdAt = holder.taskView.findViewById(R.id.list_item_creationDate);
         // Auslesen der Task-Eigenschaften und übertragen in die jeweiligen TextViews
         title.setText(task.getTitle());

@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initInputElements(){
-        taskTitleInput = findViewById(R.id.input_title);
-        ImageButton addButton = findViewById(R.id.input_button);
+        taskTitleInput = findViewById(R.id.input_text);
+        Button addButton = findViewById(R.id.input_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
